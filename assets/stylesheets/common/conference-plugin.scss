@@ -1,0 +1,124 @@
+.conference__navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 16px;
+
+  a,
+  a:visited {
+    display: inline-block;
+    color: #fff;
+    padding: 12px 16px;
+  }
+
+  li {
+    display: inline-block;
+    list-style: none;
+    background-color: $tertiary;
+  }
+
+  li:hover,
+  li:focus {
+    background-color: $highlight;
+  }
+}
+
+.conference__schedule {
+  margin-top: 32px;
+}
+
+.conference__event {
+  display: flex;
+  justify-content: space-between;
+}
+
+.conference__schedule {
+  .conference__event {
+    $bg-event: #FFDACC;
+    background-color: $bg-event;
+
+    &:nth-child(even) {
+      background-color: darken($bg-event, 5%);
+    }
+
+    &:hover,
+    &:nth-child(even):hover {
+      background-color: lighten($bg-event, 10%);
+    }
+  }
+
+  &.asia .conference__event {
+    $bg-asia: #A5F3DC;
+    background-color: $bg-asia;
+
+    &:nth-child(even) {
+      background-color: darken($bg-asia, 5%);
+    }
+
+    &:hover,
+    &:nth-child(even):hover {
+      background-color: lighten($bg-asia, 10%);
+    }
+  }
+
+  &.europe .conference__event {
+    $bg-europe: #F0B2EC;
+    background-color: $bg-europe;
+
+    &:nth-child(even) {
+      background-color: darken($bg-europe, 5%);
+    }
+
+    &:hover,
+    &:nth-child(even):hover {
+      background-color: lighten($bg-europe, 10%);
+    }
+  }
+
+  &.canada .conference__event {
+    $bg-canada: #FFEBC2;
+    background-color: $bg-canada;
+
+    &:nth-child(even) {
+      background-color: darken($bg-canada, 5%);
+    }
+
+    &:hover,
+    &:nth-child(even):hover {
+      background-color: lighten($bg-canada, 10%);
+    }
+  }
+}
+
+.conference__event__time {
+  display: inline-block;
+  width: 80px;
+  margin: 8px;
+}
+
+.conference__event__title {
+  display: flex;
+  flex-grow: 1;
+  margin: 8px 16px;
+  list-style: none;
+}
+
+.conference__event__meta {
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.conference__event__author {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.conference__event__actions {
+  display: inline-block;
+  width: 100px;
+  text-wrap: none;
+  text-align: right;
+  margin: 8px 16px;
+}

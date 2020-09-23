@@ -1,0 +1,15 @@
+<div>
+    {{#if isFaved}}
+        {{d-button
+            class="btn-primary"
+            label="conference_plugin.remove_from_favorites"
+            action=(action 'toggleFave' sessionTag)
+            }}
+    {{else}}
+            {{d-button
+                class="btn-secondary"
+                label="conference_plugin.save_to_favorites"
+                action=(action 'toggleFave' sessionTag)
+                }}
+    {{/if}}
+</div>

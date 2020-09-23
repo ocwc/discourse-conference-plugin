@@ -1,0 +1,34 @@
+<h1>Schedule page</h1>
+
+
+<ul class="conference__navigation">
+    <li>{{#link-to "conference.schedule" (query-params date="2020-11-16")}}Monday, 16 November{{/link-to}}</li>
+    <li>{{#link-to "conference.schedule" (query-params date="2020-11-17")}}Tuesday, 17 November{{/link-to}}</li>
+    <li>{{#link-to "conference.schedule" (query-params date="2020-11-18")}}Wednesday, 18 November{{/link-to}}</li>
+    <li>{{#link-to "conference.schedule" (query-params date="2020-11-19")}}Thursday, 19 November{{/link-to}}</li>
+    <li>{{#link-to "conference.schedule" (query-params date="2020-11-20")}}Friday, 20 November{{/link-to}}</li>
+    <li>{{#link-to "conference.schedule" (query-params date="anytime")}}Anytime{{/link-to}}</li>
+</ul>
+
+{{#if isAnytime}}
+    <ul class="conference__schedule">
+        {{#each events as |entry|}}
+            <ScheduleEntry @entry={{entry}} @isLive={{false}} />
+        {{/each}}
+    </ul>
+{{else}}
+    {{#each-in events as |tz item|}}
+        <ul class="conference__schedule {{tz}}">
+            {{#each item as |entry|}}
+                <ScheduleEntry @entry={{entry}} @isLive={{true}}  />
+            {{/each}}
+        </ul>
+    {{/each-in}}
+{{/if}}
+
+<hr/>
+<p>
+    Your saved sessions are: {{#each currentUser.custom_fields.oeg20_faves as |fave|}} {{ fave }}, {{/each}}
+</p>
+{{outlet}}
+

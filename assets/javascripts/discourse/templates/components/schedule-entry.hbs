@@ -1,0 +1,17 @@
+<div class="conference__event">
+    {{#if @isLive}}
+        <span class="conference__event__time">{{ startTime }}</span>
+    {{/if}}
+    <span class="conference__event__title">
+        <a class="conference__event__meta" href="{{ @entry.url }}">
+            <span class="conference__event__author">{{@entry.author}}</span>
+            <span>{{ @entry.title }}</span>
+        </a>
+    </span>
+    {{#if @isLive}}
+        <span class="conference__event__actions">
+            <a href="#" class="btn-primary btn btn-text">Zoom Link</a>
+        </span>
+        <ToggleFave @sessionTag={{@entry.easychair}} />
+    {{/if}}
+</div>
