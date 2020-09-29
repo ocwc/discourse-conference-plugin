@@ -10,8 +10,12 @@
     </span>
     {{#if @isLive}}
         <span class="conference__event__actions">
-            <a href="#" class="btn-primary btn btn-text">Zoom Link</a>
+            <a href="#" class="btn-primary btn btn-text">Room {{ @entry.track }}</a>
         </span>
-        <ToggleFave @sessionTag={{@entry.easychair}} />
+
+    {{log @showSave}}
+        {{#if @showSave}}
+            <ToggleFave @sessionTag={{@entry.easychair}} />
+        {{/if}}
     {{/if}}
 </div>

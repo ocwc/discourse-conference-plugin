@@ -7,7 +7,7 @@ class CreateConferenceEntries < ActiveRecord::Migration[6.0]
       t.string :end
       t.string :url
       t.string :topic
-      t.string :format
+      t.string :kind
       t.string :author
       t.boolean :sync
 

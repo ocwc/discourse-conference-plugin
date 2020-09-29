@@ -32,12 +32,14 @@ module ConferencePlugin
         e.end = params[:end]
         e.url = params[:url]
         e.topic = params[:topic]
-        e.format = params[:format]
+        e.kind = params[:format]
         e.author = params[:author]
         e.sync = params[:sync]
         e.easychair = params[:easychair]
         e.timezone = params[:timezone]
         e.unesco = params[:unesco]
+        e.sector = params[:sector]
+        e.track = params[:track]
       end
       entry.save
 
