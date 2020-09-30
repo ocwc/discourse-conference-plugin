@@ -2,7 +2,7 @@ module ConferencePlugin
   class ConferencePluginController < ::ApplicationController
     requires_plugin ConferencePlugin
 
-    before_action :ensure_logged_in
+    before_action :ensure_logged_in, only: [:clear, :create]
 
     def index
     end
@@ -32,7 +32,7 @@ module ConferencePlugin
         e.end = params[:end]
         e.url = params[:url]
         e.topic = params[:topic]
-        e.kind = params[:format]
+        e.kind = params[:kind]
         e.author = params[:author]
         e.sync = params[:sync]
         e.easychair = params[:easychair]

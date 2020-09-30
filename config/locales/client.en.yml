@@ -1,5 +1,5 @@
 en:
   js:
     conference_plugin:
-      save_to_favorites: "Save to my Sessions"
-      remove_from_favorites: "Remove from my Sessions"
+      save_to_favorites: "Save"
+      remove_from_favorites: "Saved!"
