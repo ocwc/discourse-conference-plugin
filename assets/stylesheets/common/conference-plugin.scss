@@ -1,4 +1,5 @@
 $gray-800: #CCCCCC;
+$blue-500: #0D59F2;
 $black: #222222;
 $white: #fff;
 
@@ -8,7 +9,8 @@ $white: #fff;
   margin: 0 auto 16px;
 
   a,
-  a:visited {
+  a:visited,
+  a:hover {
     display: inline-block;
     color: #fff;
     padding: 12px 16px;
@@ -27,6 +29,11 @@ $white: #fff;
 }
 
 .conference__schedule {
+  margin-top: 16px;
+  margin-left: 0;
+}
+
+.conference__schedule__date {
   margin-top: 32px;
 }
 
@@ -36,20 +43,19 @@ $white: #fff;
   border: 1px solid $gray-800;
   margin-bottom: 8px;
   color: $black;
-}
 
-.conference__schedule {
-  .conference__event {
-    &:hover {
-      //background-color: lighten($bg-event, 10%);
-    }
+  &:hover,
+  &:active {
+    border: 1px solid $blue-500;
   }
 }
 
 .conference__event__time {
   display: flex;
-  flex: 0 0 80px;
+  flex: 0 0 auto;
   margin: 8px;
+  justify-content: center;
+  align-items: center;
 }
 
 .conference__event__content {
@@ -66,23 +72,24 @@ $white: #fff;
   flex-direction: column;
 
   color: $black;
-  &:visited {
+  &:visited,
+  &:hover {
     color: $black;
   }
 }
 
 .conference__event__title {
   font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .conference__event__author {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .conference__event__actions {
   display: flex;
   white-space: nowrap;
-  //text-align: right;
   align-self: center;
   margin: 8px 16px;
 }
@@ -92,10 +99,52 @@ $white: #fff;
 }
 
 .conference__upcoming {
+  margin-top: 16px;
   margin-bottom: 32px;
+}
+
+.conference__upcoming .conference__schedule {
+  margin: 16px 80px 32px;
+
+  @media screen and (max-width: 800px) {
+    margin: 16px auto;
+  }
 }
 
 .icon {
   display: inline-block;
   background-repeat: no-repeat;
+}
+
+
+.conference__filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.conference__filter__mine {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  border: 1px solid $gray-800;
+  border-radius: 2px;
+}
+
+.conference__filter__mine .d-button-label {
+  margin-left: 4px;
+}
+
+.conference__filter__mine .d-icon-oeg-icon-circle-check {
+  color: #FF0000;
+}
+
+.conference__filter__mine input {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
 }

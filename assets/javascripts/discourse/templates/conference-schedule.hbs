@@ -1,47 +1,39 @@
-<h1>OE Global 20 Schedule</h1>
-
 <div class="conference__upcoming">
-    <h2>Next 3 events (simulating {{currentTime}})</h2>
+    <h2>Coming up next</h2>
     <ul class="conference__schedule">
-    {{#each upcomingEvents as |entry|}}
-        <ScheduleEntry @entry={{entry}} @isLive={{true}} @showSave={{false}} />
-    {{/each}}
-    </ul>
-</div>
-
-
-<ul class="conference__navigation">
-    <li>{{#link-to "conference.schedule" (query-params date="2020-11-16")}}Monday, 16 November{{/link-to}}</li>
-    <li>{{#link-to "conference.schedule" (query-params date="2020-11-17")}}Tuesday, 17 November{{/link-to}}</li>
-    <li>{{#link-to "conference.schedule" (query-params date="2020-11-18")}}Wednesday, 18 November{{/link-to}}</li>
-    <li>{{#link-to "conference.schedule" (query-params date="2020-11-19")}}Thursday, 19 November{{/link-to}}</li>
-    <li>{{#link-to "conference.schedule" (query-params date="2020-11-20")}}Friday, 20 November{{/link-to}}</li>
-    <li>{{#link-to "conference.schedule" (query-params date="anytime")}}Anytime{{/link-to}}</li>
-</ul>
-
-<div>
-    <label>
-        Only show my saved sessions
-        {{input type="checkbox" checked=showMine}}
-    </label>
-    {{!-- {{filter-unesco}} --}}
-</div>
-
-{{#if isAnytime}}
-    <ul class="conference__schedule">
-        {{#each events as |entry|}}
-            <ScheduleEntry @entry={{entry}} @isLive={{false}} @showSave={{false}} />
+        {{#each upcomingEvents as |entry|}}
+            <ScheduleEntry @entry={{entry}} @isLive={{true}} @showSave={{false}} />
         {{/each}}
     </ul>
-{{else}}
-    {{#each-in events as |tz item|}}
-        <ul class="conference__schedule {{tz}}">
-            {{#each item as |entry|}}
-                <ScheduleEntry @entry={{entry}} @isLive={{true}} @showSave={{true}} />
+</div>
+
+<h2>Schedule</h2>
+<p>All dates/times are adjusted to your local time</p>
+
+<div class="conference__filters">
+    <select onchange={{action (mut selectedDay) value="target.value"}}>
+        {{#each availableDays as |day|}}
+            <option value={{day}}>{{day}}</option>
+        {{/each}}
+    </select>
+
+    <label class="btn-icon-text conference__filter__mine">
+        {{if showMine (d-icon 'oeg-icon-circle-check') (d-icon 'oeg-icon-circle')}}
+        <span class="d-button-label">Only show my saved sessions</span>
+        {{input type="checkbox" checked=showMine}}
+    </label>
+</div>
+
+{{#each-in filteredSessions as |date entries|}}
+    {{#if entries}}
+        <h2 class="conference__schedule__date">{{date}}</h2>
+        <ul class="conference__schedule">
+            {{#each entries as |entry|}}
+                <ScheduleEntry @entry={{entry}} @isLive={{entry.sync}} @showSave={{true}} />
             {{/each}}
         </ul>
-    {{/each-in}}
-{{/if}}
+    {{/if}}
+{{/each-in}}
 
 <hr/>
 {{outlet}}

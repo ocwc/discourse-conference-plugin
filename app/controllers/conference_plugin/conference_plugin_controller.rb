@@ -2,7 +2,7 @@ module ConferencePlugin
   class ConferencePluginController < ::ApplicationController
     requires_plugin ConferencePlugin
 
-    before_action :ensure_logged_in, only: [:clear, :create]
+    before_action :ensure_admin, only: [:clear, :create]
 
     def index
     end

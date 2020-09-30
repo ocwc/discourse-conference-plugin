@@ -21,10 +21,23 @@ export default Controller.extend({
   queryParams: ["date"],
   date: null,
   showMine: false,
+  selectedDay: "All days",
 
   @computed
   currentTime() {
     return moment("2020-11-16 16:10:30");
+  },
+
+  @computed("sessions")
+  availableDays() {
+    let sessions = this.get("sessions");
+    if (sessions) {
+      console.log(typeof sessions);
+      return [
+        "All days",
+        ...Object.keys(sessions).filter((item) => sessions[item].length > 0),
+      ];
+    }
   },
 
   @computed("model")
@@ -44,16 +57,17 @@ export default Controller.extend({
   @computed("model", "faves", "showMine")
   sessions() {
     function sortAndFilter(events, date) {
-      let filteredEvents = events.filter(
-        (e) => moment(e.start).format("YYYY-MM-DD") === date
-      );
-      filteredEvents.sort(sortDates);
+      let filteredEvents;
 
-      return {
-        asia: filteredEvents.filter((e) => e.timezone === "asia"),
-        europe: filteredEvents.filter((e) => e.timezone === "europe"),
-        canada: filteredEvents.filter((e) => e.timezone === "canada"),
-      };
+      if (date) {
+        filteredEvents = events.filter(
+          (e) => moment(e.start).format("YYYY-MM-DD") === date
+        );
+      } else {
+        filteredEvents = events;
+      }
+      filteredEvents.sort(sortDates);
+      return filteredEvents;
     }
 
     let model = this.get("model.conference_plugin");
@@ -67,16 +81,32 @@ export default Controller.extend({
       let anytime = model.filter((e) => e.sync !== true);
 
       let data = {
-        "2020-11-16": sortAndFilter(events, "2020-11-16"),
-        "2020-11-17": sortAndFilter(events, "2020-11-17"),
-        "2020-11-18": sortAndFilter(events, "2020-11-18"),
-        "2020-11-19": sortAndFilter(events, "2020-11-19"),
-        "2020-11-20": sortAndFilter(events, "2020-11-20"),
-        anytime,
+        "Sunday, 15 November": sortAndFilter(events, "2020-11-15"),
+        "Monday, 16 November": sortAndFilter(events, "2020-11-16"),
+        "Tuesday, 17 November": sortAndFilter(events, "2020-11-17"),
+        "Wednesday, 18 November": sortAndFilter(events, "2020-11-18"),
+        "Thursday, 19 November": sortAndFilter(events, "2020-11-19"),
+        "Friday, 20 November": sortAndFilter(events, "2020-11-20"),
+        Anytime: anytime,
       };
+
       return data;
     }
     return {};
+  },
+
+  @computed("sessions", "selectedDay")
+  filteredSessions() {
+    let sessions = this.get("sessions");
+    let selectedDay = this.get("selectedDay");
+
+    console.log(sessions, selectedDay);
+
+    if (selectedDay === "All days") {
+      return sessions;
+    }
+
+    return { [selectedDay]: sessions[selectedDay] };
   },
 
   @computed("sessions", "date")
