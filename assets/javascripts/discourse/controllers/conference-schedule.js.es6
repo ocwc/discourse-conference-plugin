@@ -32,7 +32,6 @@ export default Controller.extend({
   availableDays() {
     let sessions = this.get("sessions");
     if (sessions) {
-      console.log(typeof sessions);
       return [
         "All days",
         ...Object.keys(sessions).filter((item) => sessions[item].length > 0),
@@ -100,8 +99,6 @@ export default Controller.extend({
     let sessions = this.get("sessions");
     let selectedDay = this.get("selectedDay");
 
-    console.log(sessions, selectedDay);
-
     if (selectedDay === "All days") {
       return sessions;
     }
@@ -120,5 +117,13 @@ export default Controller.extend({
   @computed("date")
   isAnytime() {
     return this.get("date") === "anytime";
+  },
+
+  @computed("currentUser.groups.[]")
+  isConferenceRegistered() {
+    let groups = this.get("currentUser.groups");
+    if (groups) {
+      return groups.filter((g) => g.name === "oeg2020").length === 1;
+    }
   },
 });

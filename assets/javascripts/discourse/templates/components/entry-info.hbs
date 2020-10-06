@@ -1,8 +1,12 @@
-{{#if sessionTag}}
-    <b>Session time</b>: {{startDate}}<br />
-    <br />
-        {{#toggle-fave sessionTag=sessionTag}}{{/toggle-fave}}
-        <a href="/conference/schedule/" class="btn btn-secondary btn-text">View my Schedule and Zoom Links</a>
-    <br />
+{{#if isFuture}}
+    <b>Session time</b>: {{startDate}}
+    <span class="conference__schedule__entry__controls">
+        <LinkTo @route="conference.schedule" class="btn btn-secondary btn-text">View Schedule</LinkTo>
+        {{#if isConferenceRegistered}}
+            <ToggleFave @sessionTag={{sessionTag}} />
+        {{/if}}
+    </span>
+    <br/>
     <small>All dates and times are in your local time zone</small>
+    <br/>
 {{/if}}

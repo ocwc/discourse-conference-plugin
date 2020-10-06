@@ -7,14 +7,14 @@
             <span class="conference__event__author">{{@entry.author}}</span>
             <span class="conference__event__title">{{ @entry.title }}</span>
             <span class="conference__event__labels">
-            <a class="badge-wrapper bullet" href="/c/oeg-2020/15"><span class="badge-category-bg"
+            <span class="badge-wrapper bullet"><span class="badge-category-bg"
                                                                         style={{{this.kindColor}}}></span><span
                     data-drop-close="true" class="badge-category clear-badge"><span
-                    class="category-name">{{@entry.kind}}</span></span></a>
-            <a class="badge-wrapper bullet" href="/c/oeg-2020/15"><span class="badge-category-bg"
+                    class="category-name">{{@entry.kind}}</span></span></span>
+            <span class="badge-wrapper bullet"><span class="badge-category-bg"
                                                                         style={{{this.topicColor}}}></span><span
                     data-drop-close="true" class="badge-category clear-badge"><span
-                    class="category-name">{{@entry.topic}}</span></span></a>
+                    class="category-name">{{@entry.topic}}</span></span></span>
             </span>
         </a>
     </span>
@@ -24,10 +24,12 @@
             <ToggleFave @sessionTag={{@entry.easychair}} />
         {{/if}}
             {{#if @isLive}}
+                {{!--
                 <a href="#" class="btn-primary btn btn-icon-text">
                 {{d-icon 'oeg-icon-video'}}
                     <span class="d-button-label">Room {{ @entry.track }}</span>
-            </a>
+                </a>
+                --}}
             {{/if}}
     </span>
     {{/if}}

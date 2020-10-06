@@ -1,3 +1,4 @@
+{{!--
 <div class="conference__upcoming">
     <h2>Coming up next</h2>
     <ul class="conference__schedule">
@@ -6,8 +7,9 @@
         {{/each}}
     </ul>
 </div>
+--}}
 
-<h2>Schedule</h2>
+<h2>OE Global 2020 Preliminary Schedule</h2>
 <p>All dates/times are adjusted to your local time</p>
 
 <div class="conference__filters">
@@ -17,11 +19,13 @@
         {{/each}}
     </select>
 
-    <label class="btn-icon-text conference__filter__mine">
-        {{if showMine (d-icon 'oeg-icon-circle-check') (d-icon 'oeg-icon-circle')}}
-        <span class="d-button-label">Only show my saved sessions</span>
-        {{input type="checkbox" checked=showMine}}
-    </label>
+    {{#if isConferenceRegistered}}
+        <label class="btn-icon-text conference__filter__mine">
+            {{if showMine (d-icon 'oeg-icon-circle-check') (d-icon 'oeg-icon-circle')}}
+            <span class="d-button-label">Only show my saved sessions</span>
+            {{input type="checkbox" checked=showMine}}
+        </label>
+    {{/if}}
 </div>
 
 {{#each-in filteredSessions as |date entries|}}

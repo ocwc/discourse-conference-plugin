@@ -20,13 +20,15 @@ export default Ember.Component.extend({
   @computed("entry.start")
   startDate() {
     let start = this.get("entry.start");
-    return moment(start).format("LLLL");
+    return moment(start).format("dddd, D MMM, HH:mm A");
   },
 
   @computed("entry.start")
   isFuture() {
     let start = moment(this.get("entry.start"));
-    return start > moment();
+    if (start) {
+      return start > moment();
+    }
   },
 
   @computed("tags")
@@ -37,6 +39,14 @@ export default Ember.Component.extend({
       if (tags.length > 0) {
         return tags[0].replace("oeg20_", "");
       }
+    }
+  },
+
+  @computed("currentUser.groups.[]")
+  isConferenceRegistered() {
+    let groups = this.get("currentUser.groups");
+    if (groups) {
+      return groups.filter((g) => g.name === "oeg2020").length === 1;
     }
   },
 });
