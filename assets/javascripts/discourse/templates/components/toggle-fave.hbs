@@ -1,15 +1,19 @@
-{{#if isFaved}}
-    {{d-button
-            icon="bookmark"
-            class="btn-danger"
-            label="conference_plugin.remove_from_favorites"
-            action=(action 'toggleFave' sessionTag)
-    }}
+{{#if isError}}
+    <b>Error!</b>&nbsp;Please&nbsp;<a href="/my/preferences/profile">complete your profile (Interests and Affiliation)</a>&nbsp;and try again.
 {{else}}
-    {{d-button
-            icon="bookmark"
-            class="btn-primary"
-            label="conference_plugin.save_to_favorites"
-            action=(action 'toggleFave' sessionTag)
-    }}
+    {{#if isFaved}}
+        {{d-button
+                icon="bookmark"
+                class="btn-danger"
+                label="conference_plugin.remove_from_favorites"
+                action=(action 'toggleFave' sessionTag)
+        }}
+    {{else}}
+        {{d-button
+                icon="bookmark"
+                class="btn-primary"
+                label="conference_plugin.save_to_favorites"
+                action=(action 'toggleFave' sessionTag)
+        }}
+    {{/if}}
 {{/if}}

@@ -47,7 +47,11 @@ export default {
               }
 
               user.set("custom_fields.oeg20_faves", faves);
-              user.save();
+              user.save().catch((e) => {
+                if (e.errorThrown === "Unprocessable Entity") {
+                  this.set("isError", true);
+                }
+              });
             });
           },
         },
