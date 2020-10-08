@@ -20,6 +20,7 @@ const topicColors = {
   "Global Collaboration, Strategies, & Policies in Open Education": "#93F0D4",
   "Innovation through MOOCs practices": "#FF938A",
   "Technologies for Open Education": "#C5A0F8",
+  "Sponsor Session": "#FFC66D",
 };
 
 export default Ember.Component.extend({
