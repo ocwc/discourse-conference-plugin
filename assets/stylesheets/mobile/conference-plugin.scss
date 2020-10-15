@@ -1,2 +1,33 @@
-.conference-plugin {
+.conference__schedule .category-name {
+  max-width: 150px;
+  text-overflow: ellipsis;
+}
+
+.conference__schedule .conference__event {
+  flex-direction: column;
+}
+
+.conference__event__time {
+  justify-content: start;
+  margin-left: 10px;
+}
+
+.conference__event__content {
+  margin: 0 10px 10px;
+}
+
+.conference__event__author {
+  max-width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.conference__event__actions {
+  align-self: flex-end;
+  margin: 8px 10px;
+}
+
+.conference__filters {
+  flex-direction: column;
 }

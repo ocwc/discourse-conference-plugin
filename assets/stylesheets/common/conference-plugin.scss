@@ -96,6 +96,10 @@ $white: #fff;
 
 .conference__event__actions button {
   margin-right: 8px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .conference__upcoming {
@@ -156,4 +160,11 @@ $white: #fff;
 
 .conference__schedule__entry__controls {
   margin-left: 32px;
+}
+
+.conference__filters select {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid var(--primary-low-mid);
+  border-radius: 2px;
 }
