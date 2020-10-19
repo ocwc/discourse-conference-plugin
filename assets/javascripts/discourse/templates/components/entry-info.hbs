@@ -1,12 +1,27 @@
-{{#if isFuture}}
-    <b>Session time</b>: {{startDate}}
-    <span class="conference__schedule__entry__controls">
+{{#if entry.sync}}
+    {{#if isFuture}}
+        <b>Session time</b>: {{startDate}}
+        <span class="conference__schedule__entry__controls">
         <LinkTo @route="conference.schedule" class="btn btn-secondary btn-text">View Schedule</LinkTo>
-        {{#if isConferenceRegistered}}
-            <ToggleFave @sessionTag={{sessionTag}} />
-        {{/if}}
+            {{#if isConferenceRegistered}}
+                <ToggleFave @sessionTag={{sessionTag}} />
+            {{/if}}
     </span>
-    <br/>
-    <small>All dates and times are in your local time zone</small>
-    <br/>
+        <br/>
+        <small>All dates and times are in your local time zone</small>
+        <br/>
+    {{/if}}
+{{else}}
+    {{#if sessionTag}}
+        <div class="row">
+            <div class="topic-body clearfix">
+                <p>You're viewing asynchronous session. To get notified about new updates, set your notification
+                    preference
+                    by clicking on
+                    <button class="btn-secondary btn btn-icon-text">{{d-icon 'far-bell'}}</button>
+                    at the bottom of the page.
+                </p>
+            </div>
+        </div>
+    {{/if}}
 {{/if}}
