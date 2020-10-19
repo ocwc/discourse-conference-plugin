@@ -25,6 +25,7 @@ const topicColors = {
 
 export default Ember.Component.extend({
   tagName: "",
+  isOpen: false,
 
   @computed("entry.kind")
   kindColor() {
@@ -54,5 +55,12 @@ export default Ember.Component.extend({
   startTime() {
     let start = this.get("entry.start");
     return moment(start).format("LT");
+  },
+
+  actions: {
+    toggleIsOpen() {
+      let isOpen = this.get("isOpen");
+      this.set("isOpen", !isOpen);
+    },
   },
 });

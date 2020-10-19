@@ -8,29 +8,42 @@
             <span class="conference__event__title">{{ @entry.title }}</span>
             <span class="conference__event__labels">
             <span class="badge-wrapper bullet"><span class="badge-category-bg"
-                                                                        style={{{this.kindColor}}}></span><span
+                                                     style={{{this.kindColor}}}></span><span
                     data-drop-close="true" class="badge-category clear-badge"><span
                     class="category-name">{{@entry.kind}}</span></span></span>
             <span class="badge-wrapper bullet"><span class="badge-category-bg"
-                                                                        style={{{this.topicColor}}}></span><span
+                                                     style={{{this.topicColor}}}></span><span
                     data-drop-close="true" class="badge-category clear-badge"><span
                     class="category-name">{{@entry.topic}}</span></span></span>
             </span>
         </a>
     </span>
     {{#if isConferenceRegistered}}
-        <span class="conference__event__actions">
-        {{#if @showSave}}
-            <ToggleFave @sessionTag={{@entry.easychair}} />
-        {{/if}}
-            {{#if @isLive}}
-                {{!--
-                <a href="#" class="btn-primary btn btn-icon-text">
-                {{d-icon 'oeg-icon-video'}}
-                    <span class="d-button-label">Room {{ @entry.track }}</span>
-                </a>
-                --}}
+        <div class="conference__event__actions__wrapper">
+            <div class="conference__event__actions">
+                {{#if @isLive}}
+                    {{#if @showSave}}
+                        <ToggleFave @sessionTag={{@entry.easychair}} />
+                    {{/if}}
+                    <button class="btn-primary btn btn-icon-text" onClick={{action 'toggleIsOpen'}}>
+                        {{d-icon 'oeg-icon-video'}}
+                        <span class="d-button-label">Room {{ @entry.track }}</span>
+                    </button>
+                {{/if}}
+            </div>
+            {{#if isOpen}}
+                <div class="conference__event__actions__zoom">
+                    <p>
+                        Zoom ID: 123 4567 8910<br />
+                        Password: oeglobal
+                    </p>
+                    <a href="#" class="btn-secondary btn btn-icon-text disabled">
+                        {{d-icon 'oeg-icon-video'}}
+                        <span class="d-button-label">Join</span>
+                    </a>
+                    <br /><small>(Zoom information will be <br/> available on the day of the conference).</small>
+                </div>
             {{/if}}
-    </span>
+        </div>
     {{/if}}
 </div>

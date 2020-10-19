@@ -87,6 +87,11 @@ $white: #fff;
   margin-bottom: 4px;
 }
 
+.conference__event__actions__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .conference__event__actions {
   display: flex;
   white-space: nowrap;
@@ -100,6 +105,10 @@ $white: #fff;
   &:last-child {
     margin-right: 0;
   }
+}
+
+.conference__event__actions__zoom {
+  padding-bottom: 8px;
 }
 
 .conference__upcoming {
