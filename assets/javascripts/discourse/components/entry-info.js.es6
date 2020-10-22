@@ -31,6 +31,12 @@ export default Ember.Component.extend({
     }
   },
 
+  @computed("entry.endTime")
+  endTime() {
+    let end = this.get("entry.end");
+    return moment(end).format("LT");
+  },
+
   @computed("tags")
   sessionTag() {
     let tags = this.get("tags");

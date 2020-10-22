@@ -1,6 +1,6 @@
 {{#if entry.sync}}
     {{#if isFuture}}
-        <b>Session time</b>: {{startDate}}
+        <b>Session time</b>: {{startDate}} — {{endTime}}
         <span class="conference__schedule__entry__controls">
         <LinkTo @route="conference.schedule" class="btn btn-secondary btn-text">View Schedule</LinkTo>
             {{#if isConferenceRegistered}}

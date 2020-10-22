@@ -10,6 +10,12 @@
 .conference__event__time {
   justify-content: start;
   margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.conference__event__time__dash {
+  margin: 0 8px;
 }
 
 .conference__event__content {

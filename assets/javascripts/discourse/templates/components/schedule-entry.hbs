@@ -1,6 +1,10 @@
 <div class="conference__event">
     {{#if @isLive}}
-        <span class="conference__event__time">{{ startTime }}</span>
+        <span class="conference__event__time">
+            <span>{{ startTime }}</span>
+            <span class="conference__event__time__dash">—</span>
+            <span>{{ endTime }}</span>
+        </span>
     {{/if}}
     <span class="conference__event__content">
         <a class="conference__event__meta" href="{{ @entry.url }}">
@@ -34,14 +38,14 @@
             {{#if isOpen}}
                 <div class="conference__event__actions__zoom">
                     <p>
-                        Zoom ID: 123 4567 8910<br />
+                        Zoom ID: 123 4567 8910<br/>
                         Password: oeglobal
                     </p>
                     <a href="#" class="btn-secondary btn btn-icon-text disabled">
                         {{d-icon 'oeg-icon-video'}}
                         <span class="d-button-label">Join</span>
                     </a>
-                    <br /><small>(Zoom information will be <br/> available on the day of the conference).</small>
+                    <br/><small>(Zoom information will be <br/> available on the day of the conference).</small>
                 </div>
             {{/if}}
         </div>

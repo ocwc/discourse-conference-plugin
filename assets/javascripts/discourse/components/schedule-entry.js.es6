@@ -57,6 +57,12 @@ export default Ember.Component.extend({
     return moment(start).format("LT");
   },
 
+  @computed("entry.endTime")
+  endTime() {
+    let end = this.get("entry.end");
+    return moment(end).format("LT");
+  },
+
   actions: {
     toggleIsOpen() {
       let isOpen = this.get("isOpen");
