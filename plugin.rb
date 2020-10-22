@@ -23,11 +23,16 @@ after_initialize do
   User.register_custom_field_type 'oeg20_faves', :array
   register_editable_user_custom_field [ :oeg20_faves, oeg20_faves: [] ]
 
+  User.register_custom_field_type 'oeg20_tz', :string
+  register_editable_user_custom_field [ :oeg20_tz, oeg20_tz: '' ]
+
   # TODO Drop after Discourse 2.6.0 release
   if respond_to?(:allow_public_user_custom_field)
     allow_public_user_custom_field :oeg20_faves
+    allow_public_user_custom_field :oeg20_tz
   else
     whitelist_public_user_custom_field :oeg20_faves
+    whitelist_public_user_custom_field :oeg20_tz
   end
 
 #   add_to_serializer(:user, :oeg20_faves) {
