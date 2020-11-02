@@ -38,6 +38,14 @@
   flex-direction: column;
 }
 
+.conference__filters__dropdowns {
+  flex-direction: column;
+}
+
+.conference__filters__dropdowns select {
+  max-width: 216px;
+}
+
 .conference__event__actions__zoom {
   display: flex;
   flex-direction: column;
