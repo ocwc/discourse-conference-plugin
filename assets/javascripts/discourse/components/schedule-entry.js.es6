@@ -8,6 +8,7 @@ const kindColors = {
   Workshop: "#FFE525",
   Poster: "#DB43DB",
   Panel: "#3b80f7",
+  "Closing session": "#FF0000",
 };
 
 const topicColors = {

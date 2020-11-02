@@ -9,22 +9,35 @@
 </div>
 --}}
 
-<h2>OE Global 2020 Preliminary Schedule</h2>
+<h2>OE Global 2020 Schedule</h2>
 <p>All dates/times are adjusted to your local time</p>
 
 <div class="conference__filters">
-    <select onchange={{action (mut selectedDay) value="target.value"}}>
-        {{#each availableDays as |day|}}
-            <option value={{day}}>{{day}}</option>
-        {{/each}}
-    </select>
+    <div class="conference__filters__dropdowns">
+        <select onchange={{action (mut selectedDay) value="target.value"}}>
+            {{#each availableDays as |day|}}
+                <option value={{day}}>{{day}}</option>
+            {{/each}}
+        </select>
+
+        <select onchange={{action (mut selectedTopic) value="target.value"}}>
+            {{#each availableTopics as |topic|}}
+                <option value={{topic}}>{{topic}}</option>
+            {{/each}}
+        </select>
+    </div>
 
     {{#if isConferenceRegistered}}
-        <label class="btn-icon-text conference__filter__mine">
-            {{if showMine (d-icon 'oeg-icon-circle-check') (d-icon 'oeg-icon-circle')}}
-            <span class="d-button-label">Only show my saved sessions</span>
-            {{input type="checkbox" checked=showMine}}
-        </label>
+        {{#if faves}}
+            <label class="btn-icon-text conference__filter__mine">
+                {{if showMine (d-icon 'oeg-icon-circle-check') (d-icon 'oeg-icon-circle')}}
+                <span class="d-button-label">Only show my {{faves.length}} saved {{if pluralFaves 'session'
+                                                                                      'sessions'}}</span>
+                {{input type="checkbox" checked=showMine}}
+            </label>
+        {{else}}
+            <label class="conference__filter__mine">Save at least one session to create a personal calendar</label>
+        {{/if}}
     {{/if}}
 </div>
 

@@ -1,7 +1,6 @@
 import Controller from "@ember/controller";
 import computed from "discourse-common/utils/decorators";
 import { reads } from "@ember/object/computed";
-import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
 
 let sortDates = function (a, b) {
   let dateA = moment(a.start).format("YYYY-MM-DD HH:mm");
@@ -22,6 +21,13 @@ export default Controller.extend({
   date: null,
   showMine: false,
   selectedDay: "All days",
+  selectedTopic: "All topics",
+
+  @computed("faves")
+  pluralFaves() {
+    let faves = this.get("faves");
+    return faves > 1;
+  },
 
   @computed
   currentTime() {
@@ -39,6 +45,19 @@ export default Controller.extend({
     }
   },
 
+  @computed("model.conference_plugin")
+  availableTopics() {
+    let model = this.get("model.conference_plugin");
+    let events = model.filter((e) => e.sync);
+
+    let topics = [...new Set(events.map((item) => item.topic))]
+      .filter((item) => item)
+      .sort();
+    if (events) {
+      return ["All topics", ...topics];
+    }
+  },
+
   @computed("model")
   upcomingEvents() {
     let model = this.get("model.conference_plugin");
@@ -53,7 +72,7 @@ export default Controller.extend({
 
   faves: reads("currentUser.custom_fields.oeg20_faves"),
 
-  @computed("model", "faves", "showMine")
+  @computed("model", "faves", "showMine", "selectedTopic")
   sessions() {
     function sortAndFilter(events, date) {
       let filteredEvents;
@@ -75,11 +94,16 @@ export default Controller.extend({
       model = model.filter((e) => faves.indexOf(e.easychair.toString()) !== -1);
     }
 
+    let selectedTopic = this.get("selectedTopic");
+    if (selectedTopic !== "All topics") {
+      model = model.filter((e) => e.topic === selectedTopic);
+    }
+
     if (model) {
       let events = model.filter((e) => e.sync);
       let anytime = model.filter((e) => e.sync !== true);
 
-      let data = {
+      return {
         "Sunday, 15 November": sortAndFilter(events, "2020-11-15"),
         "Monday, 16 November": sortAndFilter(events, "2020-11-16"),
         "Tuesday, 17 November": sortAndFilter(events, "2020-11-17"),
@@ -88,13 +112,11 @@ export default Controller.extend({
         "Friday, 20 November": sortAndFilter(events, "2020-11-20"),
         Anytime: anytime,
       };
-
-      return data;
     }
     return {};
   },
 
-  @computed("sessions", "selectedDay")
+  @computed("sessions", "selectedDay", "selectedTopic")
   filteredSessions() {
     let sessions = this.get("sessions");
     let selectedDay = this.get("selectedDay");
