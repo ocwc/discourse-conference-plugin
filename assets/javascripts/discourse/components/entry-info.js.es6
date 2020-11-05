@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   @computed("entry.start")
   startDate() {
     let start = this.get("entry.start");
-    return moment(start).format("dddd, D MMM, HH:mm A");
+    return moment(start).format("dddd, D MMM, LT");
   },
 
   @computed("entry.start")
