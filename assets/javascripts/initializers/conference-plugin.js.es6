@@ -49,7 +49,6 @@ export default {
               user.set("custom_fields.oeg20_faves", faves);
               user.set("custom_fields.oeg20_tz", moment.tz.guess());
               user.save().catch((e) => {
-                console.log(e);
                 this.set("isError", true);
                 // if (e.errorThrown === "Unprocessable Entity") {
                 //   this.set("isError", true);
