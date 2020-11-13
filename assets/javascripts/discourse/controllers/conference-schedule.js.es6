@@ -31,7 +31,7 @@ export default Controller.extend({
 
   @computed
   currentTime() {
-    return moment("2020-11-16 16:10:30");
+    return moment();
   },
 
   @computed("sessions")
