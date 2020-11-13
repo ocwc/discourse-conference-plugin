@@ -40,6 +40,8 @@ module ConferencePlugin
         e.unesco = params[:unesco]
         e.sector = params[:sector]
         e.track = params[:track]
+        e.zlink = params[:zlink]
+        e.zid = params[:zid]
       end
       entry.save
 
