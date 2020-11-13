@@ -2,11 +2,21 @@
     {{#if isFuture}}
         <b>Session time</b>: {{startDate}} — {{endTime}}
         <span class="conference__schedule__entry__controls">
-        <LinkTo @route="conference.schedule" class="btn btn-secondary btn-text">View Schedule</LinkTo>
+            <LinkTo @route="conference.schedule" class="btn btn-secondary btn-text">View Schedule</LinkTo>
             {{#if isConferenceRegistered}}
                 <ToggleFave @sessionTag={{sessionTag}} />
             {{/if}}
-    </span>
+        </span>
+        {{#if isConferenceRegistered}}
+            <div class="conference__schedule__entry__controls">
+            <br/><b>Zoom information:</b>
+                <a class="btn-primary btn btn-icon-text" href="{{entry.zlink}}">
+                    {{d-icon 'oeg-icon-video'}}
+                    <span class="d-button-label">Open Room {{ entry.track }}</span>
+                </a>
+                (ID: {{ entry.zid }} Password: oeglobal)
+            </div>
+        {{/if}}
         <br/>
         <small>All dates and times are in your local time zone</small>
         <br/>
