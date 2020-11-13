@@ -38,10 +38,10 @@
             {{#if isOpen}}
                 <div class="conference__event__actions__zoom">
                     <p>
-                        Zoom ID: 123 4567 8910<br/>
+                        Zoom ID: {{ @entry.zid }}<br/>
                         Password: oeglobal
                     </p>
-                    <a href="#" class="btn-secondary btn btn-icon-text disabled">
+                    <a href="{{ @entry.zlink }}" class="btn-secondary btn btn-icon-text disabled">
                         {{d-icon 'oeg-icon-video'}}
                         <span class="d-button-label">Join</span>
                     </a>
