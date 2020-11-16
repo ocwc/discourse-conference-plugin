@@ -3,16 +3,10 @@ import computed from "discourse-common/utils/decorators";
 import { reads } from "@ember/object/computed";
 
 let sortDates = function (a, b) {
-  let dateA = moment(a.start).format("YYYY-MM-DD HH:mm");
-  let dateB = moment(b.start).format("YYYY-MM-DD HH:mm");
-  if (dateA < dateB) {
-    return -1;
-  }
-  if (dateB > dateA) {
-    return 1;
-  }
+  let dateA = parseInt(moment(a.start).format("X"));
+  let dateB = parseInt(moment(b.start).format("X"));
 
-  return 0;
+  return dateA - dateB;
 };
 
 export default Controller.extend({
@@ -27,11 +21,6 @@ export default Controller.extend({
   pluralFaves() {
     let faves = this.get("faves");
     return faves > 1;
-  },
-
-  @computed
-  currentTime() {
-    return moment();
   },
 
   @computed("sessions")
@@ -61,7 +50,7 @@ export default Controller.extend({
   @computed("model")
   upcomingEvents() {
     let model = this.get("model.conference_plugin");
-    let currentTime = this.get("currentTime");
+    let currentTime = moment();
     let events = model
       .filter((e) => e.sync)
       .filter((e) => currentTime.diff(moment(e.start), "minutes") < 5);
